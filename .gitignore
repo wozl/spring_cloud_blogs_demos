@@ -3,4 +3,4 @@
 /myapp/
 /minio-client/
 .git
-
+.gitignore
