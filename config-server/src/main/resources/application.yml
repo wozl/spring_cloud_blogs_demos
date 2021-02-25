@@ -6,13 +6,32 @@ spring:
       server:
         git:
           uri: http://192.168.117.186/root/SpringcloudConfig.git
-          search-paths: respo
+          search-paths: respo,respo/config
           default-label: master
           username: root
           password: root
+  rabbitmq:
+    host: 192.168.117.186
+    port: 5672
+    username: guest
+    password: guest
+  security:
+    basic: #使用基本认证
+      enabled: true
+    user: #设置用户名和密码
+      name: test
+      password: 1111
 server:
   port: 8888
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    bus-refresh:
+      enabled: true

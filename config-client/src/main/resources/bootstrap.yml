@@ -14,3 +14,8 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
+management: #Actuator 监控值，暴露refresh来实现动态刷新(POST)
+  endpoints:
+    web:
+      exposure:
+        include: refresh

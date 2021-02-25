@@ -1,0 +1,50 @@
+server:
+  port: 8111
+
+spring:
+  application:
+    name: config-databases
+  cloud:
+    config:
+      label: master
+      profile: dev   #需要读取配置文件的后缀
+      discovery:
+        enabled: true
+        service-id: config-server     #在注册中心注册的config-server的id发生拉取配置的请求
+      name: config-databases     #需要读取的配置文件
+      username: test #安全验证
+      password: 1111
+  rabbitmq:
+    host: 192.168.117.186
+    port: 5672
+    username: guest
+    password: guest
+
+
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  type-aliases-package: com.config.client.configdatabases.entity
+  mapper-locations:
+    - classpath:mybatis/xml/*.xml
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    instance-id: config-databases
+    prefer-ip-address: true
+
+#management: #Actuator 监控值，暴露refresh来实现动态刷新(POST)
+  #endpoints:
+   # web:
+      #exposure:
+       # include: refresh
+
+
+
+info:
+  app.name: config-databases
+  company.name: null
+  build.artifactId: $project.artifactId$
+  build.verstion: $project.verstion$
